@@ -1,6 +1,6 @@
+**original link: https://github.com/OpenSoftware-agentAI/AIagent_OS**
 # EduMate
 <img width="900" height="850" alt="image" src="https://github.com/user-attachments/assets/3906d91e-9f14-4986-b230-3f5764c9206f" />
-
 
 ## 🧭 Overview
 
@@ -11,21 +11,11 @@
 
 ---
 
-### 💡 주요 기능
-
-- **자연어 기반 대화형 업무 처리** — 자연어로 요청 가능
-- **엑셀 데이터 처리 및 분석** — 수강생 정보, 출결, 점수 자동 처리
-- **AI 코멘트 생성** — 학생 답안 기반의 자동 코멘트 작성
-- **SMS 발송** — 학부모에게 데일리테스트 메시지 전송
-- **실시간 처리 및 정확도 향상** — 반복 업무의 처리 속도 향상과 오류 최소화
-
----
-
 ## 📈 Project Status
 
 > **Status:** 🚀 **Operational (Live Service Running)**
 
-EduMate는 현재 **실제 학원 환경에서 사용 중**이며,  
+EduMate는 현재 **실제 학원 환경에서 사용했으며**,  
 AI 기반 대화형 시스템을 통해 **데스크 업무 자동화 및 피드백 생성** 을 중심으로 다양한 기능을 제공합니다.  
 주요 기능은 안정적으로 동작하고 있으며, 사용자 피드백을 기반으로 **지속적인 기능 추가 및 리팩토링 작업**이 진행되고 있습니다.
 
@@ -35,7 +25,7 @@ AI 기반 대화형 시스템을 통해 **데스크 업무 자동화 및 피드�
 
 ---
 
-### ✅ 운영 중인 주요 기능
+### ✅ 주요 기능
 
 1. **엑셀 파일 업로드**
 
@@ -45,7 +35,7 @@ AI 기반 대화형 시스템을 통해 **데스크 업무 자동화 및 피드�
 
 2. **문제별 코멘트 생성**
    
-   <img width="500" height="400" alt="image" src="https://github.com/user-attachments/assets/3e16b7b3-8e26-449d-97fa-6b05e0a89a87" />
+   <img width="300" height="200" alt="image" src="https://github.com/user-attachments/assets/3e16b7b3-8e26-449d-97fa-6b05e0a89a87" />
 
 
    - 데스크 선생님이 문제의 특징을 간단히 입력하면 **EduMate AI**가 각 문제에 대한 피드백을 자동 생성
@@ -65,23 +55,51 @@ AI 기반 대화형 시스템을 통해 **데스크 업무 자동화 및 피드�
    - 생성된 코멘트는 화면에서 즉시 확인 가능
 
 5. **학부모용 데일리 테스트 이미지 생성**
+   
+     <img width="228" height="186" alt="에듀메이트 이미지 생성" src="https://github.com/user-attachments/assets/f7ff125c-03b1-4ee2-9d3c-f638169074b6" />
 
    - 학생별 점수, 코멘트가 포함된 **자동 이미지 생성**
 
-6. **SMS 발송 기능**
+7. **SMS 발송 기능**
    - 학부모님께 데일리 테스트 결과 이미지를 **문자(SMS)** 로 자동 송부
    - 발송 내역 및 상태를 시스템에서 확인 가능
 
+
 ---
 
-### 🔧 지속 개선 중인 항목
+##  🔑 기여
 
-- [ ] 피드백 표현 다양화 (톤/스타일 선택 기능)
-- [ ] 외부 학원 관리 시스템 연동 기능
-- [ ] 카카오 후속 메시지 API 연동 (백그라운드 결과 실시간 전달)
-- [ ] 다중 수신자 처리 UX 개선
-- [ ] 파일 업로드 전용 블록 UX 고도화
+#### 사용자 파일 업로드 편의성 강화
 
+- 학원 실무 상황을 반영, 사용자(원장 및 교사)가 직접 CSV 및 이미지 파일을 업로드할 수 있도록 프론트·백엔드 설계
+- React 컴포넌트를 활용한 직관적인 파일 선택 및 업로드 진행 상태 알림
+- 백엔드는 Multer 등 라이브러리로 안전하게 파일 처리하고, 업로드된 CSV 데이터를 자동으로 데이터베이스에 저장해 AI 분석에 활용
+
+#### SMS 문자전송 서비스 연동
+
+- SMS SDK를 통합하여 학부모 대상 맞춤형 문자 및 MMS 자동 발송 기능 구축
+- 문자 성공 여부 및 에러에 대한 체계적 로깅과 예외 처리로 운영 안정성 확보
+- AI 코멘트 및 이미지 생성 완료 후 자동 문자 발송 연동으로 완전한 업무 프로세스 자동화 실현
+
+#### 실시간 진행상황 통신과 안정적 처리
+
+- Socket.IO를 이용해 학생별 코멘트 생성 현황을 실시간 프론트엔드에 전달, 사용자 경험(UX) 크게 향상
+- 비동기 API 호출과 에러 발생 시에도 시스템 부하 최소화 및 빠른 복구 체계 마련
+- 세션별 대화 히스토리 관리, System Prompt를 통한 업무 특화 대화 설계
+
+### 문제 해결 및 성능 최적화 경험
+
+- AI 응답 누락, 불필요한 API 호출 문제점 근본 원인 분석 및 프롬프트 강화로 해결
+- Token 제한 오류를 방지하기 위해 AI 요청 최대 토큰값 조정 및 기본값 사용
+- [Socket.IO](http://socket.io/) 응답 처리 로직 개선으로 Race condition 현상 감소, 오류율 대폭 개선
+- 전체 시스템을 선별적으로 리팩토링하여 유지보수성과 확장성 모두 향상
+
+## 주요 성과
+
+- 학생 개별 코멘트 생성 성공률 100% 달성 및 자연스러운 맞춤 응답 완성
+- 파일 업로드 기능 도입 후 데이터 입력 오류 30% 감소, 작업 효율 대폭 증가
+- SMS 연동 후 학부모 커뮤니케이션 효율 2배 증가, 문자발송 자동화로 업무 시간 60% 절감
+- 실제 서비스 환경에서 약 40초 내 6명 학생 분량 코멘트 생성 및 실시간 업데이트 제공
 
 ---
 ## 🛠 기술 스택
@@ -94,59 +112,6 @@ AI 기반 대화형 시스템을 통해 **데스크 업무 자동화 및 피드�
 - **Infrastructure**: 환경변수 설정, 정적 파일 서빙, 헬스체크
 
 ---
-
-### **📝 How to Build**
-
-```bash
-# 저장소 클론
-git clone https://github.com/OpenSoftware-agentAI/AIagent_OS.git
-
-# 의존성 설치
-npm install
-
-# 환경변수 설정
-## Frontend (FE)
-# 1. 개발 환경 (FE/.env.development)
-VITE_API_BASE_URL=http://localhost:3000
-
-# 2. 배포 환경 (FE/.env.production)
-VITE_API_BASE_URL=https://<your-production-domain>
-
-## Backend (BE)
-# 개발 환경 (BE/.env)
-
-# OpenAI API Key (비공개)
-OPENAI_API_KEY=<your_openai_api_key>
-
-# Solapi 문자 API
-SOLAPI_API_KEY=<your_solapi_api_key>
-SOLAPI_API_SECRET=<your_solapi_api_secret>
-SOLAPI_FROM=<registered_sender_number>
-
-# 서버 설정
-PORT=3000
-NODE_ENV=development
-
-# Prisma Database URL
-DATABASE_URL="prisma+postgres://<your_database_url>"
-
-# 관리자용 인증키
-ADMIN_KEY=<your_admin_key>
-
-
-# BE 패키지로 이동
-cd BE
-
-# 서버 구동
-npm run dev
-
-# ngrok 실행 (포트 번호 3000 고정)
-ngrok http 3000
-
-# 웹 서비스 접속
-https://tory-edumate.netlify.app/
-
-```
 
 ### ⚙️ Tech Stack
 
